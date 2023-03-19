@@ -5,7 +5,15 @@
     "pages/cart/cart",
     "pages/my/my"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        "goods_details/goods_details",
+        "goods_list/goods_list"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -22,16 +30,16 @@
         "selectedIconPath": "static/images/bar/home-1.png"
       },
       {
-        "pagePath": "pages/cart/cart",
-        "text": "购物车",
-        "iconPath": "./static/images/bar/cart-0.png",
-        "selectedIconPath": "static/images/bar/cart-1.png"
-      },
-      {
         "pagePath": "pages/cate/cate",
         "text": "分类",
         "iconPath": "./static/images/bar/category-0.png",
         "selectedIconPath": "static/images/bar/category-1.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "./static/images/bar/cart-0.png",
+        "selectedIconPath": "static/images/bar/cart-1.png"
       },
       {
         "pagePath": "pages/my/my",

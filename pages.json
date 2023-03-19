@@ -4,7 +4,7 @@
             "path" : "pages/home/home",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "home",
                 "enablePullDownRefresh": false
             }
             
@@ -13,7 +13,7 @@
             "path" : "pages/cate/cate",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "cate",
                 "enablePullDownRefresh": false
             }
             
@@ -22,7 +22,7 @@
             "path" : "pages/cart/cart",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "cart",
                 "enablePullDownRefresh": false
             }
             
@@ -31,12 +31,36 @@
 		    "path" : "pages/my/my",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "",
+		        "navigationBarTitleText": "my",
 		        "enablePullDownRefresh": false
 		    }
 		    
 		}
     ],
+	"subPackages": [
+		{
+			"root": "subpkg",
+			"pages": [{
+                    "path" : "goods_details/goods_details",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "goods_list/goods_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+		}
+	],
 	"tabBar": {
 		"selectedColor": "C00000",
 		"list": [
@@ -47,16 +71,16 @@
 				"selectedIconPath": "static/images/bar/home-1.png"
 			},
 			{
-				"pagePath": "pages/cart/cart",
-				"text": "购物车",
-				"iconPath": "./static/images/bar/cart-0.png",
-				"selectedIconPath": "static/images/bar/cart-1.png"
-			},
-			{
 				"pagePath": "pages/cate/cate",
 				"text": "分类",
 				"iconPath": "./static/images/bar/category-0.png",
 				"selectedIconPath": "static/images/bar/category-1.png"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"text": "购物车",
+				"iconPath": "./static/images/bar/cart-0.png",
+				"selectedIconPath": "static/images/bar/cart-1.png"
 			},
 			{
 				"pagePath": "pages/my/my",
