@@ -1,5 +1,9 @@
 <template>
+
 	<view>
+		<!-- 组件：搜索 -->
+		<my-search @click='gotoSearch'></my-search>
+		
 		<view class="scroll-view-container">
 			<!-- 左侧滑动区域 -->
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height: wh + 'px'}">
@@ -48,8 +52,8 @@
 		onLoad() {
 			// 获取系统信息的同步接口 保存在sysinfo中
 			const sysinfo = uni.getSystemInfoSync();
-			// 给wh动态赋值赋值 为 窗口的可用高度
-			this.wh = sysinfo.windowHeight;
+			// 给wh动态赋值赋值 为 窗口的可用高度 - 自定义组件search高度
+			this.wh = sysinfo.windowHeight - 50;
 			// console.log(sysinfo) //debug
 
 			// 调用获取分类数据的方法
@@ -84,6 +88,11 @@
 			gotoGoodsList(item3){
 				uni.navigateTo({
 					url:  '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
+				})
+			},
+			gotoSearch(){
+				uni.navigateTo({
+					url: '/subpkg/search/search'
 				})
 			}
 		}
