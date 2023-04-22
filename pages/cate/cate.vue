@@ -34,6 +34,8 @@
 </template>
 
 <script>
+	// 导入自己封装的mixin模块
+	import badgeMix from '@/mixins/tabbar-badge.js'
 	export default {
 		data() {
 			return {
@@ -49,6 +51,8 @@
 				scrollTop: 0,
 			};
 		},
+		// 将 badgeMix 混入到当前的页面中进行使用
+		mixins: [badgeMix],
 		onLoad() {
 			// 获取系统信息的同步接口 保存在sysinfo中
 			const sysinfo = uni.getSystemInfoSync();

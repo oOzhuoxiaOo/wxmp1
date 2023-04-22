@@ -24,7 +24,7 @@
 				</view>
 			</view>
 			<!-- 运费 -->
-			<view class="yf">快递：免运费</view>
+			<view class="yf">快递：免运费 -- {{cart.length}}</view>
 		</view>
 		<!-- 商品详情信息 -->
 		<rich-text :nodes="goods_info.goods_introduce"></rich-text>
@@ -41,6 +41,10 @@
 </template>
 
 <script>
+	// 从vuex中按需导出 mapState 辅助方法
+	import {mapState} from "vuex"
+	import {mapMutations} from "vuex"
+	import {mapGetters} from "vuex"
 	export default {
 		data() {
 			return {
@@ -68,6 +72,13 @@
 				      }
 				    ]
 			};
+		},
+		computed:{
+			 // 调用 mapState 方法，把 m_cart 模块中的 cart 数组映射到当前页面中，作为计算属性来使用
+			 // ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])
+			    ...mapState('m_cart', ['cart']),
+				 // 把 m_cart 模块中名称为 total 的 getter 映射到当前页面中使用
+				 ...mapGetters('m_cart',['total'])
 		},
 		onLoad(options) {
 			// 获取商品id
@@ -111,8 +122,47 @@
 						url:'/pages/cart/cart'
 					})
 				}
-			}
+			},
+			// 右侧 (加入购物车) 按钮的点击事件处理函数
+			buttonClick(e){
+				console.log('method:buttonClick')
+				console.log(e)
+				// 1.判断是否点击了加入购物车 按钮
+				if(e.content.text === "加入购物车") {
+					// 2.组织一个商品的对象信息
+					const goods = {
+						goods_id: this.goods_info.goods_id,       // 商品的Id
+					    goods_name: this.goods_info.goods_name,   // 商品的名称
+					    goods_price: this.goods_info.goods_price, // 商品的价格
+					    goods_count: 1,                           // 商品的数量
+					    goods_small_logo: this.goods_info.goods_small_logo, // 商品的图片
+					    goods_state: true                         // 商品的勾选状态
+					}
+					// 3.通过this调用映射过来的addToCart方法，把商品信息对象存储到购物车数组中
+					this.addToCart(goods)
+				}
+			},
+			// 把 m_cart 模块中的 addToCart 方法映射到当前页面使用
+			...mapMutations('m_cart',['addToCart'])
+		},
+	watch:{
+		// 监听购物车商品总数 total 值变化，通过形参newVal获得变化后的新值
+		total: {
+			handler(newVal){
+			// 通过数组的 find()方法，找到哦购物车按钮的配置对象
+			const findResult = this.options.find((x)=>{
+				return x.text === '购物车'
+			})
+			console.log('watch:total')
+			if(findResult) {
+				// 动态为购物车按钮的info属性赋值
+				findResult.info = newVal
+			}	
+			},
+			// immediate 属性用来声明此侦听器，是否在页面初次加载完毕后立即调用
+			immediate:true
 		}
+	}
 	}
 </script>
 

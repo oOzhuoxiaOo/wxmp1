@@ -46,6 +46,8 @@
 </template>
 
 <script>
+	// 导入自己封装的mixin模块
+	import badgeMix from '@/mixins/tabbar-badge.js'
 	export default {
 		data() {
 			return {
@@ -57,6 +59,8 @@
 				floorList:[]
 			};
 		},
+		// 将 badgeMix 混入到当前的页面中进行使用
+		mixins: [badgeMix],
 		// 小程序home页面刚加载时调用方法,初始化数据
 		onLoad() {
 			// 获取轮播图数据
